@@ -1,12 +1,25 @@
 from src.doctors.models import DoctorModel, CreateDoctorArgs
 from sqlalchemy.orm import Session
+from typing import TypedDict
+
+class GetAllDoctorsQueryArg(TypedDict):
+    name: str | None
+    specialization: str | None
 
 class DoctorModelManager:
     def __init__(self, session: Session):
         self.session = session
 
-    def get_all_doctors(self):
-        return self.session.query(DoctorModel).all()
+    def get_all_doctors(self, query: GetAllDoctorsQueryArg | None = None) -> list[DoctorModel]:
+        data  = self.session.query(DoctorModel)
+        
+        if query:
+            if query.get('name'):
+                data = data.filter(DoctorModel.name.ilike(f"%{query['name']}%"))
+            if query.get('specialization'):
+                data = data.filter(DoctorModel.specialization.ilike(f"%{query['specialization']}%"))
+                
+        return data.all()
 
     def get_doctor_by_id(self, doctor_id):
         return self.session.query(DoctorModel).filter(DoctorModel.id == doctor_id).first()
