@@ -2,10 +2,11 @@ from src.mcp_server import server
 from src.logging import logger
 from src.settings import sql_session
 from src.doctors.model_managers import DoctorModelManager, GetAllDoctorsQueryArg
-from typing import Optional
+from typing import TypedDict
+
 
 @server.tool()
-def doctors(name: str = '', specialization: str = '') -> list[dict[str, object]]:
+def doctors(name: str = '', specialization: str = '') -> list[dict[str, object]] | dict[str, str]:
     """
     This tool provides access to doctor records.
     Returns a list of all doctors in the system, including their names, specialties, and contact information.
@@ -24,8 +25,14 @@ def doctors(name: str = '', specialization: str = '') -> list[dict[str, object]]
         'name' : name,
         'specialization' : specialization,
     }
-    logger.info(f"Fetching doctors with query: {query}")
     result = DoctorModelManager(sql_session).get_all_doctors(query)
+    
+    if len(result) == 0:
+        return {
+            "message": "No doctors found matching the criteria."
+        }
+    
     doctors_list = DoctorModelManager.serialize_doctors(result)
     
     return doctors_list
+

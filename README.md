@@ -3,6 +3,8 @@
 In Gitbash
 ```
 D:/mcp-servers/health_care_mcp_server/.venv/Scripts/uv.EXE run --with mcp[cli] --with sqlalchemy mcp run D:/mcp-servers/health_care_mcp_server/main.py:mcp_server
+
+clear && mcp dev main.py:server
 ```
 
 ## Installation
@@ -17,6 +19,11 @@ D:/mcp-servers/health_care_mcp_server/.venv/Scripts/uv.EXE run mcp dev D:/mcp-se
 ```
 C:\Python313\Scripts\
 C:\Python313\
+```
+
+## activate VENV
+```
+.venv\Script\activate
 ```
 
 ## Install in Claude

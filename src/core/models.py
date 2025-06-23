@@ -3,6 +3,7 @@ from src.settings import Base
 from sqlalchemy.sql import func
 from sqlalchemy import DateTime
 import uuid
+from sqlalchemy.dialects import mysql
 
 class BaseModel(Base):
     __abstract__ = True    
@@ -17,3 +18,13 @@ class BaseModel(Base):
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.to_dict()})"
+    
+    
+def orm_object_to_query(orm_object):
+    sql_str = str(
+    orm_object.statement.compile(
+        dialect=mysql.dialect(),
+        compile_kwargs={"literal_binds": True}
+        )
+    )
+    return sql_str

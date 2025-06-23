@@ -2,6 +2,7 @@ from src.doctors.models import DoctorModel, CreateDoctorArgs
 from sqlalchemy.orm import Session
 from typing import TypedDict
 from src.logging import logger
+from src.core.models import orm_object_to_query
 
 class GetAllDoctorsQueryArg(TypedDict):
     name: str | None
@@ -13,14 +14,11 @@ class DoctorModelManager:
 
     def get_all_doctors(self, query: GetAllDoctorsQueryArg | None = None) -> list[DoctorModel]:
         data  = self.session.query(DoctorModel)
-        
         if query:
             if query.get('name'):
-                logger.info(f"Filtering doctors by name: {query['name']}")
                 data = data.filter(DoctorModel.name.ilike(f"%{query['name']}%"))
             if query.get('specialization'):
                 data = data.filter(DoctorModel.specialization.ilike(f"%{query['specialization']}%"))
-                
         return data.all()
 
     def get_doctor_by_id(self, doctor_id):

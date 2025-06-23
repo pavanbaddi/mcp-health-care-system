@@ -1,10 +1,16 @@
 from sqlalchemy import Date, Column, String
-from src.settings import Base
+from src.core.models import BaseModel
 import uuid
 from sqlalchemy.sql import func
 from sqlalchemy import DateTime
+from typing import TypedDict
 
-class PatientModel(Base):
+class CreatePatientArgs(TypedDict):
+        id: str
+        name: str
+        dob: Date
+
+class PatientModel(BaseModel):
     __tablename__ = 'patients'
 
     id = Column(String(255), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
