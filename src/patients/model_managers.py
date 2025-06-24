@@ -21,7 +21,7 @@ class PatientModelManager:
                 data = data.filter(PatientModel.name.ilike(f"%{query['name']}%"))
             if query.get('dob'):
                 data = data.filter(PatientModel.dob == query['dob'])
-        return data.all()
+        return data.limit(5).all()
 
 
     @staticmethod
