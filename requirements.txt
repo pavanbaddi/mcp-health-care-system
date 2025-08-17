@@ -28,5 +28,4 @@ starlette==0.47.1
 typer==0.16.0
 typing-extensions==4.14.0
 typing-inspection==0.4.1
-uv==0.7.13
 uvicorn==0.34.3

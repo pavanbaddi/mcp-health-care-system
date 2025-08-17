@@ -6,6 +6,7 @@ import os
 # 1. Define the database engine
 # Replace with your MySQL connection details
 connection_string = os.getenv("CONNECTION_STRING")
+
 if connection_string is None:
     raise ValueError("CONNECTION_STRING environment variable is not set.")
 
