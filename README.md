@@ -39,3 +39,9 @@ mcp install main.py:server --with-editable .
         |- tools.py #this will contain tools like get the list of doctors
     |- mcp_server.py #this will contain mcp server instance that will be used by doctors/tools.py
 |- main.py #this will contain mcp_server and run it
+
+
+## Requirements
+- List doctor and update details
+- List Patient and update details
+- Create appointment

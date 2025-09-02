@@ -1,4 +1,4 @@
-from src.patients.models import PatientModel
+from src.patients.models import PatientModel, CreatePatientArgs
 from sqlalchemy.orm import Session
 from typing import TypedDict
 from sqlalchemy import Date
@@ -20,6 +20,12 @@ class PatientModelManager:
             if query.get('dob'):
                 data = data.filter(PatientModel.dob == query['dob'])
         return data.limit(5).all()
+
+    def create_patient(self, query: CreatePatientArgs) -> PatientModel:
+        instance = PatientModel(**query)
+        self.session.add(instance)
+        self.session.commit()
+        return instance
 
 
     @staticmethod
