@@ -1,9 +1,6 @@
 from src.mcp_server import server
-from src.logging import logger
 from src.settings import sql_session
 from src.doctors.model_managers import DoctorModelManager, GetAllDoctorsQueryArg
-from typing import TypedDict
-
 
 @server.tool()
 def doctors(name: str = '', specialization: str = '') -> list[dict[str, object]] | dict[str, str]:

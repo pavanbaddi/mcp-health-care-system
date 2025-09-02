@@ -1,9 +1,7 @@
 from src.mcp_server import server
-from src.logging import logger
 from src.settings import sql_session
 from src.patients.model_managers import PatientModelManager, GetAllPatientsQueryArg
-from typing import TypedDict
-from datetime import datetime, date
+from datetime import datetime
 
 
 @server.tool()

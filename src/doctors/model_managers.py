@@ -1,8 +1,6 @@
 from src.doctors.models import DoctorModel, CreateDoctorArgs
 from sqlalchemy.orm import Session
 from typing import TypedDict
-from src.logging import logger
-from src.core.models import orm_object_to_query
 
 class GetAllDoctorsQueryArg(TypedDict):
     name: str | None

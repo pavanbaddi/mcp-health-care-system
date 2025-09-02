@@ -1,8 +1,6 @@
-from src.patients.models import PatientModel, CreatePatientArgs
+from src.patients.models import PatientModel
 from sqlalchemy.orm import Session
 from typing import TypedDict
-from src.logging import logger
-from src.core.models import orm_object_to_query
 from sqlalchemy import Date
 from datetime import datetime
 

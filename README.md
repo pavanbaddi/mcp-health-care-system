@@ -24,6 +24,7 @@ C:\Python313\
 ## activate VENV
 ```
 .venv\Script\activate
+source ./.venv/Script/activate
 ```
 
 ## Install in Claude

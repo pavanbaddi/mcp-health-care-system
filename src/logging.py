@@ -10,7 +10,7 @@ if not os.path.exists(log_directory):
     os.makedirs(log_directory)
 
 # Create a TimedRotatingFileHandler
-handler = TimedRotatingFileHandler(
+log_handler = TimedRotatingFileHandler(
     f"{log_directory}/app.log",  # Log file name
     when="midnight",  # Rotate logs at midnight
     interval=1,  # Interval in days
@@ -18,13 +18,13 @@ handler = TimedRotatingFileHandler(
 )
 
 # Set the logging level
-handler.setLevel(logging.DEBUG)
+log_handler.setLevel(logging.DEBUG)
 
 # Create a formatter and set it for the handler
 formatter = logging.Formatter("[%(asctime)s][%(levelname)s]- %(message)s")
-handler.setFormatter(formatter)    
+log_handler.setFormatter(formatter)    
 
 # Create a logger and add the handler to it    
-logger = logging.getLogger(__name__)
-logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
+app_logger = logging.getLogger(__name__)
+app_logger.addHandler(log_handler)
+app_logger.setLevel(logging.DEBUG)

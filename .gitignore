@@ -11,5 +11,6 @@ wheels/
 venv
 .env*
 **/*.log
+**/*.log.*
 .vscode
 local

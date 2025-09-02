@@ -9,5 +9,3 @@ MODELS_REGISTRY = [PatientModel, DoctorModel]
 TOOLS_REGISTRY = [
     'doctors.tools',
 ]
-
-
